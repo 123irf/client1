@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "createdAt": "2026-02-22T12:25:05.276Z",
+  "workspaces": [
+    {
+      "name": "kidzofi",
+      "title": "KidZoFi Store",
+      "basePath": "/",
+      "projectId": "li7v7pl2",
+      "dataset": "production",
+      "icon": "<style data-styled=\"true\" data-styled-version=\"6.3.11\">.darkfu{font-family:Inter,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",\"Liberation Sans\",Helvetica,Arial,system-ui,sans-serif;font-weight:500;font-size:13px;transform:translateY(1px);}/*!sc*/\ndata-styled.g106[id=\"sc-dAlyuI\"]{content:\"darkfu,\"}/*!sc*/\n</style><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"2\" fill=\"#037782\"></rect><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"hsla(185, 95%, 0%, 1)\" class=\"sc-dAlyuI darkfu\">KS</text></svg>",
+      "mediaLibrary": {
+        "enabled": false
+      },
+      "schema": "dd7af14e.create-schema.json",
+      "tools": "ea469a1f.create-tools.json"
+    }
+  ]
+}

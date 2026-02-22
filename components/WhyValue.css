@@ -1,0 +1,124 @@
+/* ===== Why Value Section ===== */
+.why-value {
+  background: linear-gradient(180deg, #f7f5ef, #eceae2);
+  padding: 60px 20px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.why-value-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.why-value-heading-green {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #43b028;
+  margin-bottom: 40px;
+}
+
+/* ===== Cards Grid ===== */
+.why-value-cards {
+  display: flex;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+/* ===== Card ===== */
+.wv-card {
+  flex: 1;
+  max-width: 250px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 22px 28px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon */
+.wv-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 22px;
+}
+
+.wv-card:nth-child(1) .wv-card-icon {
+  background: #e8f5e9;
+  color: #43b028;
+}
+
+.wv-card:nth-child(2) .wv-card-icon {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.wv-card:nth-child(3) .wv-card-icon {
+  background: #e0f2f1;
+  color: #00796b;
+}
+
+.wv-card:nth-child(4) .wv-card-icon {
+  background: #fbe9e7;
+  color: #d84315;
+}
+
+/* Title */
+.wv-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+/* Description */
+.wv-card-desc {
+  font-size: 0.82rem;
+  color: #777;
+  line-height: 1.6;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .why-value-cards {
+    flex-wrap: wrap;
+  }
+
+  .wv-card {
+    max-width: 45%;
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 550px) {
+  .why-value-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wv-card {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .why-value-heading,
+  .why-value-heading-green {
+    font-size: 1.5rem;
+  }
+}

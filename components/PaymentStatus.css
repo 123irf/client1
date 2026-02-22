@@ -1,0 +1,106 @@
+/* ================= PAYMENT STATUS ================= */
+.payment-status-page {
+  padding-top: 120px;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 60px;
+}
+
+.status-card {
+  text-align: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 480px;
+  width: 90%;
+}
+
+.status-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.success-icon {
+  color: #43b028;
+}
+
+.failed-icon {
+  color: #ff4d4f;
+}
+
+.spinning {
+  color: #43b028;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.status-card h1 {
+  font-size: 1.8rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.status-card p {
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.order-id {
+  font-family: monospace;
+  background: #f5f5f5;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.order-amount {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #43b028;
+  margin-top: 8px;
+}
+
+.status-home-btn,
+.status-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.status-home-btn {
+  background: #43b028;
+  color: #fff;
+}
+
+.status-home-btn:hover {
+  background: #369921;
+  color: #fff;
+}
+
+.status-retry-btn {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.status-retry-btn:hover {
+  background: #e03e40;
+  color: #fff;
+}

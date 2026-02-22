@@ -1,0 +1,262 @@
+/* ===== About Hero Banner ===== */
+.about-hero {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.about-hero-bg-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 60, 20, 0.88) 0%,
+    rgba(30, 60, 20, 0.7) 50%,
+    rgba(30, 60, 20, 0.4) 100%
+  );
+}
+
+/* Content Layout */
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 40px;
+  gap: 40px;
+}
+
+/* Left Side */
+.about-hero-left {
+  flex: 1;
+  max-width: 550px;
+}
+
+.about-hero-heading {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.about-hero-heading span {
+  color: #43b028;
+}
+
+.about-hero-tagline {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.about-hero-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* Buttons */
+.about-hero-buttons {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.about-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  background: #43b028;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.about-btn-primary:hover {
+  background: #369921;
+}
+
+.about-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 25px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.about-btn-secondary:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Trust Badges */
+.about-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.about-badge {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.about-badge strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Right Side - Image */
+.about-hero-right {
+  flex: 0 0 340px;
+}
+
+.about-hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Mission & Vision Section ===== */
+.about-mv-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.about-mv-row {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.about-mv-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-mv-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.about-mv-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+}
+
+.about-mv-desc {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+.about-mv-image-wrapper {
+  flex: 1;
+  min-width: 280px;
+}
+
+.about-mv-image {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .about-hero-content {
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .about-hero-left {
+    max-width: 100%;
+  }
+
+  .about-hero-buttons {
+    justify-content: center;
+  }
+
+  .about-hero-badges {
+    justify-content: center;
+  }
+
+  .about-hero-right {
+    flex: none;
+    width: 80%;
+    max-width: 320px;
+  }
+
+  .about-hero-heading {
+    font-size: 1.8rem;
+  }
+
+  .about-mv-row,
+  .about-mv-row.reverse {
+    flex-direction: column;
+  }
+
+  .about-mv-section {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-hero {
+    min-height: auto;
+  }
+
+  .about-hero-heading {
+    font-size: 1.5rem;
+  }
+
+  .about-hero-tagline {
+    font-size: 0.92rem;
+  }
+
+  .about-hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

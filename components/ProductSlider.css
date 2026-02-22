@@ -1,0 +1,32 @@
+/* ================= SLIDER WRAPPER ================= */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+/* ================= SLIDER TRACK ================= */
+.slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0 60px;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar */
+.slider::-webkit-scrollbar {
+  display: none;
+}
+.slider {
+  scrollbar-width: none;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .slider {
+    padding: 0 12px;
+    gap: 12px;
+  }
+}

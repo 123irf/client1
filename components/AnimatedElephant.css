@@ -1,0 +1,616 @@
+/* Elephant Container */
+.elephant-container {
+  position: relative;
+  width: 180px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Walking Wrapper - Controls the entry animation */
+.elephant-wrapper {
+  position: relative;
+  animation: 
+    walkIn 2.5s ease-out forwards,
+    bounce 0.6s ease-in-out infinite 2.5s;
+}
+
+/* Walk in from left */
+@keyframes walkIn {
+  0% {
+    transform: translateX(-150vw);
+  }
+  70% {
+    transform: translateX(20px);
+  }
+  85% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Gentle bounce after walking stops */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Main Elephant */
+.elephant {
+  position: relative;
+  width: 160px;
+  height: 130px;
+}
+
+/* Body */
+.elephant-body {
+  position: absolute;
+  bottom: 25px;
+  left: 40px;
+  width: 85px;
+  height: 65px;
+}
+
+/* Torso */
+.torso {
+  position: absolute;
+  width: 85px;
+  height: 65px;
+  background: #ffffff;
+  border-radius: 40% 40% 35% 35%;
+  box-shadow: 
+    inset -5px -5px 15px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+/* Party Hat on Body */
+.party-hat {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.hat-cone {
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 45px solid #22c55e;
+  position: relative;
+}
+
+.hat-cone::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -12px;
+  width: 24px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.hat-cone::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: -10px;
+  width: 20px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.hat-pompom {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pomShake 2s ease-in-out infinite;
+}
+
+@keyframes pomShake {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  25% { transform: translateX(-50%) rotate(-10deg); }
+  75% { transform: translateX(-50%) rotate(10deg); }
+}
+
+/* Legs */
+.leg {
+  position: absolute;
+  width: 18px;
+  height: 35px;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
+  transform-origin: top center;
+}
+
+.leg .foot {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Back legs */
+.back-left {
+  bottom: -25px;
+  left: 8px;
+  z-index: 2;
+  animation: walkBackLeft 0.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.back-right {
+  bottom: -25px;
+  left: 30px;
+  z-index: 1;
+  animation: walkBackRight 0.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+/* Front legs */
+.front-left {
+  bottom: -25px;
+  right: 30px;
+  z-index: 2;
+  animation: walkFrontLeft 0.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.front-right {
+  bottom: -25px;
+  right: 8px;
+  z-index: 1;
+  animation: walkFrontRight 0.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+/* Walking animations for legs - only active during walkIn */
+@keyframes walkBackLeft {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes walkBackRight {
+  0%, 100% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+}
+
+@keyframes walkFrontLeft {
+  0%, 100% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+}
+
+@keyframes walkFrontRight {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+/* Activate walking animation during entry */
+.elephant-wrapper {
+  --walk-duration: 2.5s;
+}
+
+.elephant-wrapper .back-left,
+.elephant-wrapper .back-right,
+.elephant-wrapper .front-left,
+.elephant-wrapper .front-right {
+  animation-play-state: running;
+  animation-duration: var(--walk-duration);
+  animation-iteration-count: 4; /* Stop after walking in */
+}
+
+/* Head */
+.elephant-head {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  width: 75px;
+  height: 70px;
+  z-index: 10;
+  animation: headBob 0.6s ease-in-out infinite 2.5s;
+}
+
+@keyframes headBob {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* Ear */
+.ear {
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  width: 35px;
+  height: 45px;
+  background: #f5f5f5;
+  border-radius: 50% 50% 40% 60%;
+  transform: rotate(-10deg);
+  z-index: 1;
+  animation: earFlap 3s ease-in-out infinite 2.5s;
+}
+
+.ear-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 28px;
+  background: #e8e8e8;
+  border-radius: 50%;
+}
+
+@keyframes earFlap {
+  0%, 90%, 100% { transform: rotate(-10deg); }
+  95% { transform: rotate(-20deg); }
+}
+
+/* Face */
+.face {
+  position: absolute;
+  width: 60px;
+  height: 55px;
+  background: #ffffff;
+  border-radius: 45% 45% 40% 40%;
+  box-shadow: 
+    inset -3px -3px 10px rgba(0, 0, 0, 0.05),
+    0 3px 8px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+/* Eye */
+.eye {
+  position: absolute;
+  top: 20px;
+  left: 18px;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  animation: blink 4s infinite 2.5s;
+}
+
+.eye::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+@keyframes blink {
+  0%, 45%, 55%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+
+.eyelid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+/* Cheek */
+.cheek {
+  position: absolute;
+  top: 28px;
+  left: 10px;
+  width: 12px;
+  height: 8px;
+  background: rgba(255, 200, 200, 0.3);
+  border-radius: 50%;
+}
+
+/* Smile */
+.smile {
+  position: absolute;
+  bottom: 18px;
+  left: 15px;
+  width: 18px;
+  height: 8px;
+  border-bottom: 3px solid #000;
+  border-radius: 0 0 18px 18px;
+}
+
+/* Trunk */
+.trunk {
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  animation: trunkSway 2s ease-in-out infinite 2.5s;
+}
+
+@keyframes trunkSway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.trunk-segment {
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.t1 {
+  width: 18px;
+  height: 15px;
+  margin-bottom: -5px;
+  z-index: 3;
+}
+
+.t2 {
+  width: 14px;
+  height: 18px;
+  margin-bottom: -5px;
+  z-index: 2;
+}
+
+.t3 {
+  width: 10px;
+  height: 15px;
+  margin-bottom: -3px;
+  z-index: 1;
+}
+
+.trunk-tip {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+/* Magic Stars */
+.magic-stars {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.star {
+  position: absolute;
+  color: #22c55e;
+  font-size: 12px;
+  opacity: 0;
+  animation: twinkle 1.5s ease-in-out infinite 2.5s;
+}
+
+.s1 {
+  top: 0;
+  left: -8px;
+  animation-delay: 2.5s;
+}
+
+.s2 {
+  top: -8px;
+  left: 0;
+  font-size: 8px;
+  animation-delay: 2.8s;
+}
+
+.s3 {
+  top: 2px;
+  left: 6px;
+  font-size: 10px;
+  animation-delay: 3.1s;
+}
+
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Tail */
+.tail {
+  position: absolute;
+  bottom: 50px;
+  left: 25px;
+  width: 3px;
+  height: 25px;
+  background: #ffffff;
+  border-radius: 2px;
+  transform-origin: top center;
+  animation: tailWag 2s ease-in-out infinite 2.5s;
+}
+
+.tail-tip {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+@keyframes tailWag {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+/* Shadow */
+.elephant-shadow {
+  width: 100px;
+  height: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  margin-top: 5px;
+  animation: shadowScale 0.6s ease-in-out infinite 2.5s;
+}
+
+@keyframes shadowScale {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% { 
+    transform: scale(0.95);
+    opacity: 0.08;
+  }
+}
+
+/* Dust Particles during walking */
+.dust-particles {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  pointer-events: none;
+}
+
+.dust {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.d1 {
+  left: 40px;
+  animation: dustKick 0.6s ease-out infinite;
+}
+
+.d2 {
+  left: 60px;
+  animation: dustKick 0.6s ease-out infinite 0.2s;
+}
+
+.d3 {
+  left: 80px;
+  animation: dustKick 0.6s ease-out infinite 0.4s;
+}
+
+@keyframes dustKick {
+  0% {
+    opacity: 0.6;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.5);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .elephant-container {
+    width: 120px;
+    height: 110px;
+  }
+  
+  .elephant {
+    width: 110px;
+    height: 90px;
+  }
+  
+  .elephant-body {
+    width: 60px;
+    height: 45px;
+    left: 25px;
+    bottom: 18px;
+  }
+  
+  .torso {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .hat-cone {
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 30px solid #22c55e;
+  }
+  
+  .hat-pompom {
+    width: 10px;
+    height: 10px;
+    top: -8px;
+  }
+  
+  .leg {
+    width: 12px;
+    height: 25px;
+  }
+  
+  .leg .foot {
+    width: 16px;
+    height: 7px;
+  }
+  
+  .elephant-head {
+    width: 55px;
+    height: 50px;
+    top: 10px;
+  }
+  
+  .face {
+    width: 45px;
+    height: 42px;
+  }
+  
+  .ear {
+    width: 25px;
+    height: 32px;
+  }
+  
+  .eye {
+    width: 7px;
+    height: 7px;
+    top: 15px;
+    left: 14px;
+  }
+  
+  .trunk-segment.t1 { width: 12px; height: 10px; }
+  .trunk-segment.t2 { width: 10px; height: 12px; }
+  .trunk-segment.t3 { width: 8px; height: 10px; }
+  
+  .elephant-shadow {
+    width: 70px;
+    height: 10px;
+  }
+}

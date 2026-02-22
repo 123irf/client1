@@ -1,0 +1,379 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+/* ===== Navbar ===== */
+.navbar {
+  height: 70px;
+  padding: 0 40px;
+  background-color: #43b028;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+
+  position: relative;
+  z-index: 1000;
+}
+
+/* ===== Left ===== */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 70px;
+  width: auto;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* ===== Center (Desktop menu stays SAME) ===== */
+.navbar-center {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-center a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 18px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-center a:hover {
+  color: #000;
+}
+
+.navbar-center a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.navbar-center a:hover::after {
+  width: 100%;
+}
+
+/* ===== Right ===== */
+.navbar-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ===== Search Bar ===== */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 10px 40px 10px 18px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  width: 220px;
+  background-color: #fff !important;
+  color: #000 !important;
+  outline: none;
+  transition: width 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-input::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.search-input:focus {
+  width: 260px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  color: #000;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.mobile-search {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.mobile-search .search-input {
+  width: 100%;
+}
+
+.btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.login {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.signup {
+  background: #000;
+  color: #fff;
+}
+
+/* ===== User Menu (logged in) ===== */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-avatar-icon {
+  font-size: 28px;
+  color: #000;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-skeleton {
+  width: 80px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.mobile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-user-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* ===== Burger (hidden on desktop) ===== */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 24px;
+  height: 3px;
+  background: #000;
+  border-radius: 2px;
+}
+/* ===== Cart ===== */
+.cart {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;          /* IMPORTANT */
+  margin: 0;           /* IMPORTANT */
+}
+
+.cart svg {
+  font-size: 22px;
+  color: #000;
+}
+
+/* Badge should FLOAT, not take space */
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: red;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 5px;
+  border-radius: 50%;
+  line-height: 1;
+  min-width: 16px;
+  text-align: center;
+}
+
+
+/* ===== Mobile Menu ===== */
+.mobile-menu {
+  display: none;
+}
+
+/* ===== Mobile Nav Icons (Search & Cart) ===== */
+.mobile-nav-icons {
+  display: none;
+  gap: 15px;
+  align-items: center;
+}
+
+.mobile-search-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #000;
+  padding: 5px;
+}
+
+.mobile-cart-icon {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #000;
+  padding: 5px;
+}
+
+.mobile-search-expanded {
+  display: none;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background-color: #43b028;
+  padding: 15px 20px;
+  z-index: 999;
+}
+
+.mobile-search-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #000;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.mobile-search-input::placeholder {
+  color: #7a7a7a;
+  opacity: 1;
+}
+
+/* ===== MOBILE ONLY ===== */
+@media (max-width: 768px) {
+
+  /* Hide desktop parts */
+  .navbar-center {
+    display: none;
+  }
+
+  /* Hide entire navbar-right on mobile */
+  .navbar-right {
+    display: none;
+  }
+
+  /* Show mobile nav icons */
+  .mobile-nav-icons {
+    display: flex;
+  }
+
+  /* Show mobile search expanded when active */
+  .mobile-search-expanded {
+    display: block;
+  }
+
+  /* Show burger */
+  .burger {
+    display: flex;
+  }
+
+  /* Mobile dropdown */
+  .mobile-menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #43b028;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 0;
+    transition: top 0.3s ease;
+  }
+
+  .mobile-menu.show {
+    display: flex;
+  }
+
+  /* Adjust mobile menu position when search is expanded */
+  .mobile-menu.show.search-expanded {
+    top: 130px;
+  }
+
+  .mobile-menu a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-menu a:hover {
+    color: #000;
+  }
+
+  .mobile-menu .btn {
+    width: 80%;
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,192 @@
+/* ===== Brand Promise Section ===== */
+.brand-promise {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.brand-promise-heading {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+}
+
+.brand-promise-subtitle {
+  font-size: 1rem;
+  color: #777;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 auto 40px;
+}
+
+/* ===== Cards Grid ===== */
+.brand-promise-cards {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ===== Card ===== */
+.bp-card {
+  flex: 1;
+  border-radius: 16px;
+  padding: 30px 28px;
+  text-align: left;
+}
+
+.bp-card-left {
+  background: linear-gradient(135deg, #f5f9ee, #eef6e6);
+  border: 1px solid #e2edcf;
+}
+
+.bp-card-right {
+  background: linear-gradient(135deg, #fef9ee, #fdf3dc);
+  border: 1px solid #f0e4c4;
+}
+
+/* Card Header */
+.bp-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.bp-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bp-card-left .bp-card-icon {
+  background: #d4edda;
+  color: #2e7d32;
+}
+
+.bp-card-right .bp-card-icon {
+  background: #fff3cd;
+  color: #b8860b;
+}
+
+.bp-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.bp-card-desc {
+  font-size: 0.88rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ===== Feature Tags (Left Card) ===== */
+.bp-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.bp-feature {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  border: 1px solid #e8f0db;
+}
+
+.bp-feature-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #4caf50;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.bp-feature-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* ===== Trust Badges (Right Card) ===== */
+.bp-trust-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eddeb8;
+}
+
+.bp-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bp-stat-stars {
+  color: #f5a623;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.bp-stat-text {
+  font-size: 0.8rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.bp-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.bp-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #f0e4c4;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.bp-badge-icon {
+  font-size: 0.85rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .brand-promise-cards {
+    flex-direction: column;
+  }
+
+  .bp-features {
+    grid-template-columns: 1fr;
+  }
+
+  .bp-trust-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .brand-promise-heading {
+    font-size: 1.7rem;
+  }
+}
