@@ -89,10 +89,6 @@ export default function ProductsPage() {
 
   return (
     <main className="products-page">
-      <div className="products-hero">
-        <h1>Our Products</h1>
-        <p>Discover educational toys and gadgets that make learning fun</p>
-      </div>
 
       {loading ? (
         <p style={{ textAlign: "center", padding: "60px", color: "#999" }}>Loading products...</p>

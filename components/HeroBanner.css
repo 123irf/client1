@@ -252,14 +252,15 @@
   .hero-search-input {
     font-size: 13px;
     padding: 4px 0;
+    min-width: 0;
   }
-  
+
   .search-btn {
     padding: 8px 14px;
     font-size: 12px;
     gap: 4px;
   }
-  
+
   .search-arrow {
     font-size: 12px;
   }
@@ -281,5 +282,36 @@
   
   .stat-value {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-heading {
+    font-size: 26px;
+  }
+
+  .search-btn span:first-child {
+    display: none;
+  }
+
+  .search-btn {
+    padding: 10px 14px;
+  }
+
+  .hero-stats {
+    gap: 12px;
+  }
+
+  .stat-icon-wrapper {
+    width: 34px;
+    height: 34px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .stat-label {
+    font-size: 11px;
   }
 }

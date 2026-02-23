@@ -7,6 +7,7 @@ import ProductSlider from "@/components/ProductSlider";
 import AboutCards from "@/components/AboutCards";
 import BrandPromise from "@/components/BrandPromise";
 import { getProducts } from "@/lib/sanity/queries";
+import "./home.css";
 
 export default function Home() {
   const [products, setProducts] = useState<any[]>([]);
@@ -28,33 +29,15 @@ export default function Home() {
       <HeroBanner />
 
       {/* Products Section */}
-      <section style={{ padding: "60px 20px", backgroundColor: "#f8f9fa" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "40px", maxWidth: "1400px", marginLeft: "auto", marginRight: "auto", padding: "0 20px" }}>
-          <h2 style={{ fontSize: "2.5rem", color: "#333", margin: 0 }}>
-            Our Products
-          </h2>
-          <Link
-            href="/products"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              padding: "10px 24px",
-              border: "2px solid #43b028",
-              borderRadius: "8px",
-              color: "#43b028",
-              textDecoration: "none",
-              fontSize: "1rem",
-              fontWeight: "600",
-              backgroundColor: "transparent",
-              transition: "all 0.3s",
-            }}
-          >
-            View All <span style={{ fontSize: "1.2rem" }}>&rarr;</span>
+      <section className="products-section">
+        <div className="products-section-header">
+          <h2 className="products-section-title">Our Products</h2>
+          <Link href="/products" className="products-view-all">
+            View All <span className="arrow">&rarr;</span>
           </Link>
         </div>
         {loading ? (
-          <p style={{ textAlign: "center", padding: "40px", color: "#999" }}>Loading products...</p>
+          <p className="products-loading">Loading products...</p>
         ) : (
           <ProductSlider products={products} />
         )}

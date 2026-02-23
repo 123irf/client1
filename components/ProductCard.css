@@ -112,6 +112,10 @@
   color: #1a1a1a;
   margin-bottom: 8px;
   line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Price + Rating Row */

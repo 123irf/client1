@@ -75,9 +75,8 @@ export default function NavBar() {
         )}
       </div>
 
-      {/* Mobile: Search Icon and Cart (outside burger menu) */}
-      <div className="mobile-nav-icons">
-        {/* Mobile Search Icon */}
+      {/* Mobile: Right section with search, cart, auth, and burger */}
+      <div className="mobile-nav-right">
         <div
           className="mobile-search-icon"
           onClick={() => setSearchExpanded(!searchExpanded)}
@@ -85,11 +84,34 @@ export default function NavBar() {
           <FaSearch />
         </div>
 
-        {/* Mobile Cart */}
         <Link href="/cart" className="mobile-cart-icon">
           <FaShoppingCart />
           {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
         </Link>
+
+        {/* Mobile Avatar (logged in only) */}
+        {status !== "loading" && session?.user && (
+          <div className="mobile-avatar-wrapper">
+            {session.user.image ? (
+              <Image
+                src={session.user.image}
+                alt={session.user.name || "User"}
+                width={28}
+                height={28}
+                className="mobile-avatar"
+              />
+            ) : (
+              <FaUserCircle className="mobile-user-icon" />
+            )}
+          </div>
+        )}
+
+        {/* Burger */}
+        <div className="burger" onClick={() => setOpen(!open)}>
+          <span />
+          <span />
+          <span />
+        </div>
       </div>
 
       {/* Mobile Expanded Search */}
@@ -104,13 +126,6 @@ export default function NavBar() {
         </div>
       )}
 
-      {/* Burger (Mobile only) */}
-      <div className="burger" onClick={() => setOpen(!open)}>
-        <span />
-        <span />
-        <span />
-      </div>
-
       {/* Mobile menu */}
       <nav className={`mobile-menu ${open ? "show" : ""} ${searchExpanded ? "search-expanded" : ""}`}>
         {/* Menu Links */}
@@ -119,7 +134,8 @@ export default function NavBar() {
         <Link href="/products" onClick={() => setOpen(false)}>Products</Link>
         <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
 
-        {/* Auth Buttons */}
+        {/* Divider + Auth Buttons */}
+        <div className="mobile-auth-divider" />
         {status === "loading" ? null : session?.user ? (
           <>
             <div className="mobile-user-info">
