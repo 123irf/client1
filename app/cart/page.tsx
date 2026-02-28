@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaTrash, FaMinus, FaPlus, FaArrowLeft, FaShoppingCart } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 import { useCart } from "@/components/providers/CartProvider";
 import "@/components/CartPage.css";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQty, totalItems, totalPrice } = useCart();
+  const { data: session } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -29,6 +31,11 @@ export default function CartPage() {
   }
 
   async function handleCheckout() {
+    if (!session) {
+      router.push("/login?callbackUrl=/cart");
+      return;
+    }
+
     setLoading(true);
     try {
       // 1. Create order on backend

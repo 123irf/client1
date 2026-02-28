@@ -70,14 +70,18 @@ export default function ProductCard({
 
       {/* Product Image */}
       <Link href={`/product/${id}`} className="product-image-link">
-        <Image
-          src={image}
-          alt={title}
-          width={260}
-          height={180}
-          className="product-image"
-          onError={(e) => (e.currentTarget.style.display = "none")}
-        />
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            width={260}
+            height={180}
+            className="product-image"
+            onError={(e) => (e.currentTarget.style.display = "none")}
+          />
+        ) : (
+          <div className="product-image" style={{ width: 260, height: 180, background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>No Image</div>
+        )}
       </Link>
 
       {/* Product Info */}

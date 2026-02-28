@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { FaShoppingCart, FaSearch, FaUserCircle } from "react-icons/fa";
 import { useSession, signOut } from "next-auth/react";
@@ -13,13 +14,14 @@ export default function NavBar() {
   const [searchExpanded, setSearchExpanded] = useState(false);
   const { totalItems } = useCart();
   const { data: session, status } = useSession();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${isHome ? "navbar-transparent" : "navbar-green"}`}>
       {/* Left */}
         <div className="navbar-left">
-        <Image src="/Logo.png" alt="KidZoFi Logo" width={70} height={70} className="logo" />
-        <span className="brand">KidZoFi</span>
+        <Image src="/Logo.png" alt="KidZoFi Logo" width={100} height={100} className="logo" />
       </div>
 
       {/* Center (Desktop menu) */}

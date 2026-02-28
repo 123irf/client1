@@ -14,14 +14,26 @@ html, body {
 .navbar {
   height: 70px;
   padding: 0 40px;
-  background-color: #43b028;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: "Poppins", sans-serif;
-
-  position: relative;
   z-index: 1000;
+}
+
+/* Home page: transparent, overlays hero */
+.navbar-transparent {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Other pages: solid green */
+.navbar-green {
+  background-color: #43b028;
+  position: relative;
 }
 
 /* ===== Left ===== */
@@ -32,14 +44,14 @@ html, body {
 }
 
 .logo {
-  height: 70px;
+  height: 100px;
   width: auto;
 }
 
 .brand {
   font-size: 22px;
   font-weight: 600;
-  color: #000;
+  color: #43b028;
 }
 
 /* ===== Center (Desktop menu stays SAME) ===== */
@@ -50,7 +62,7 @@ html, body {
 
 .navbar-center a {
   text-decoration: none;
-  color: #000;
+  color: #fff;
   font-weight: 500;
   font-size: 18px;
   position: relative;
@@ -58,7 +70,7 @@ html, body {
 }
 
 .navbar-center a:hover {
-  color: #000;
+  color: #fff;
 }
 
 .navbar-center a::after {
@@ -68,7 +80,7 @@ html, body {
   height: 2px;
   bottom: -5px;
   left: 0;
-  background-color: #000;
+  background-color: #fff;
   transition: width 0.3s ease;
 }
 
@@ -163,13 +175,13 @@ html, body {
 
 .user-avatar-icon {
   font-size: 28px;
-  color: #000;
+  color: #fff;
 }
 
 .user-name {
   font-size: 14px;
   font-weight: 500;
-  color: #000;
+  color: #fff;
   max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -198,7 +210,7 @@ html, body {
 .mobile-user-name {
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: #fff;
 }
 
 /* ===== Burger (hidden on desktop) ===== */
@@ -212,7 +224,7 @@ html, body {
 .burger span {
   width: 24px;
   height: 3px;
-  background: #000;
+  background: #fff;
   border-radius: 2px;
 }
 /* ===== Cart ===== */
@@ -227,7 +239,7 @@ html, body {
 
 .cart svg {
   font-size: 22px;
-  color: #000;
+  color: #fff;
 }
 
 /* Badge should FLOAT, not take space */
@@ -264,7 +276,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: #000;
+  color: #fff;
   padding: 4px;
 }
 
@@ -275,7 +287,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: #000;
+  color: #fff;
   padding: 4px;
 }
 
@@ -303,7 +315,7 @@ html, body {
 
 .mobile-user-icon {
   font-size: 24px;
-  color: #000;
+  color: #fff;
 }
 
 .mobile-search-expanded {
@@ -312,7 +324,8 @@ html, body {
   top: 70px;
   left: 0;
   width: 100%;
-  background-color: #43b028;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
   padding: 15px 20px;
   z-index: 999;
 }
@@ -320,7 +333,7 @@ html, body {
 .mobile-search-input {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #000;
+  border: 1px solid #ccc;
   border-radius: 25px;
   font-size: 16px;
   outline: none;
@@ -370,7 +383,8 @@ html, body {
     top: 70px;
     left: 0;
     width: 100%;
-    background-color: #43b028;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
 
     display: none;
     flex-direction: column;
@@ -392,20 +406,20 @@ html, body {
 
   .mobile-menu a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-size: 18px;
     font-weight: 500;
     transition: color 0.3s ease;
   }
 
   .mobile-menu a:hover {
-    color: #000;
+    color: #43b028;
   }
 
   .mobile-menu .mobile-auth-divider {
     width: 80%;
     height: 1px;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.15);
     margin: 4px 0;
   }
 
@@ -423,8 +437,8 @@ html, body {
   }
 
   .mobile-menu .btn.login {
-    background: #fff;
-    color: #000;
+    background: transparent;
+    color: #fff;
     border: 1px solid #fff;
     font-weight: 600;
   }

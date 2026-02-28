@@ -34,6 +34,30 @@ export const product = defineType({
             hotspot: true,
           },
         }),
+        defineArrayMember({
+          type: 'object',
+          name: 'externalImage',
+          title: 'External Image URL',
+          fields: [
+            defineField({
+              name: 'url',
+              title: 'Image URL',
+              type: 'url',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: { url: 'url', alt: 'alt' },
+            prepare({ url, alt }) {
+              return { title: alt || 'External Image', subtitle: url }
+            },
+          },
+        }),
       ],
     }),
     defineField({

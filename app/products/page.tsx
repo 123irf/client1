@@ -23,14 +23,18 @@ function ProductGridCard({ product, onAddToCart }: { product: any; onAddToCart: 
 
       {/* Product Image */}
       <Link href={`/product/${product._id}`} className="product-grid-image-link">
-        <Image
-          src={product.image}
-          alt={product.title}
-          width={280}
-          height={200}
-          className="grid-product-image"
-          onError={(e) => (e.currentTarget.style.display = "none")}
-        />
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.title}
+            width={280}
+            height={200}
+            className="grid-product-image"
+            onError={(e) => (e.currentTarget.style.display = "none")}
+          />
+        ) : (
+          <div className="grid-product-image" style={{ width: 280, height: 200, background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>No Image</div>
+        )}
       </Link>
 
       {/* Product Info */}

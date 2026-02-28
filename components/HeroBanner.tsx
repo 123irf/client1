@@ -1,11 +1,34 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaSearch } from "react-icons/fa";
-
-import { FaRobot, FaShieldAlt, FaUsers } from "react-icons/fa";
+import { FaSearch, FaRobot, FaShieldAlt, FaUsers } from "react-icons/fa";
 import "./HeroBanner.css";
+
+const slides = [
+  {
+    image: "/herobanner.png",
+    heading: "Inspiring",
+    highlight: "Intelligent Learning",
+    subtitle:
+      "AI-powered smart learning tools that make early education joyful, safe, and brilliantly engaging for kids aged 3\u201310.",
+  },
+  {
+    image: "/herobanner2.jpg",
+    heading: "Discover",
+    highlight: "Smart Play for Kids",
+    subtitle:
+      "Fun, safe, and interactive gadgets designed to spark curiosity and creativity in young minds.",
+  },
+  {
+    image: "/herobanner3.jpg",
+    heading: "Empowering",
+    highlight: "Future-Ready Kids",
+    subtitle:
+      "Give your child a head start with AI-driven educational tools trusted by thousands of parents.",
+  },
+];
 
 const categories = [
   "Interactive Devices",
@@ -21,32 +44,51 @@ const stats = [
 ];
 
 export default function HeroBanner() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="hero-banner">
-      {/* Background Image */}
-      <div className="hero-background">
-        <Image
-          src="/herobanner.png"
-          alt="Child learning with robot"
-          fill
-          priority
-          className="hero-bg-image"
-        />
-        <div className="hero-overlay" />
-      </div>
+      {/* Sliding Background Images */}
+      {slides.map((slide, i) => (
+        <div
+          key={i}
+          className={`hero-background ${i === current ? "active" : ""}`}
+        >
+          <Image
+            src={slide.image}
+            alt={`Slide ${i + 1}`}
+            fill
+            priority={i === 0}
+            className="hero-bg-image"
+          />
+          <div className="hero-overlay" />
+        </div>
+      ))}
 
       {/* Content */}
       <div className="hero-content">
-        {/* Main Heading */}
-        <h1 className="hero-heading">
-          Inspiring{" "}
-          <span className="highlight">Intelligent Learning</span>
-        </h1>
-
-        {/* Subtitle */}
-        <p className="hero-subtitle">
-          AI-powered smart learning tools that make early education joyful, safe, and brilliantly engaging for kids aged 3–10.
-        </p>
+        {/* Sliding Text */}
+        <div className="hero-text-slider">
+          {slides.map((slide, i) => (
+            <div
+              key={i}
+              className={`hero-text-slide ${i === current ? "active" : ""}`}
+            >
+              <h1 className="hero-heading">
+                {slide.heading}{" "}
+                <span className="highlight">{slide.highlight}</span>
+              </h1>
+              <p className="hero-subtitle">{slide.subtitle}</p>
+            </div>
+          ))}
+        </div>
 
         {/* Search Bar */}
         <div className="hero-search">
@@ -59,7 +101,7 @@ export default function HeroBanner() {
             />
             <Link href="/products" className="search-btn">
               <span>Explore Products</span>
-              <span className="search-arrow">→</span>
+              <span className="search-arrow">&rarr;</span>
             </Link>
           </div>
         </div>
@@ -67,11 +109,7 @@ export default function HeroBanner() {
         {/* Category Pills */}
         <div className="category-pills">
           {categories.map((cat, i) => (
-            <Link
-              key={i}
-              href="/products"
-              className="category-pill"
-            >
+            <Link key={i} href="/products" className="category-pill">
               {cat}
             </Link>
           ))}
@@ -91,6 +129,7 @@ export default function HeroBanner() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -1,8 +1,6 @@
 /* Hero Banner Styles */
 .hero-banner {
   position: relative;
-  min-height: auto;
-  height: auto;
   min-height: 600px;
   max-height: 800px;
   width: 100%;
@@ -12,11 +10,17 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Background */
+/* Background - Sliding */
 .hero-background {
   position: absolute;
   inset: 0;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-background.active {
+  opacity: 1;
 }
 
 .hero-bg-image {
@@ -35,17 +39,41 @@
   );
 }
 
-/* Content - Moved up */
+/* Content */
 .hero-content {
   position: relative;
   z-index: 1;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 50px 40px 40px;
+  padding: 90px 40px 40px;
   width: 100%;
 }
 
-/* Heading - Smaller */
+/* Sliding Text */
+.hero-text-slider {
+  position: relative;
+  min-height: 130px;
+  margin-bottom: 14px;
+}
+
+.hero-text-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  pointer-events: none;
+}
+
+.hero-text-slide.active {
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Heading */
 .hero-heading {
   font-size: 48px;
   font-weight: 700;
@@ -60,12 +88,12 @@
   color: #43b028;
 }
 
-/* Subtitle - Smaller */
+/* Subtitle */
 .hero-subtitle {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
   max-width: 520px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   line-height: 1.5;
 }
 
@@ -129,7 +157,7 @@
   font-size: 14px;
 }
 
-/* Category Pills - Smaller */
+/* Category Pills */
 .category-pills {
   display: flex;
   flex-wrap: wrap;
@@ -155,7 +183,7 @@
   border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Stats - Smaller */
+/* Stats */
 .hero-stats {
   display: flex;
   gap: 40px;
@@ -202,22 +230,50 @@
   margin-top: 2px;
 }
 
+/* Slide Dots */
+.hero-dots {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.hero-dot.active {
+  background: #43b028;
+  width: 28px;
+  border-radius: 5px;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .hero-banner {
     min-height: 550px;
   }
-  
+
   .hero-heading {
     font-size: 40px;
   }
-  
+
   .hero-subtitle {
     font-size: 15px;
   }
-  
+
   .hero-stats {
     gap: 30px;
+  }
+
+  .hero-text-slider {
+    min-height: 120px;
   }
 }
 
@@ -226,29 +282,29 @@
     min-height: auto;
     padding: 10px 0;
   }
-  
+
   .hero-content {
-    padding: 30px 20px 40px;
+    padding: 90px 20px 40px;
   }
-  
+
   .hero-heading {
     font-size: 32px;
   }
-  
+
   .hero-subtitle {
     font-size: 14px;
   }
-  
+
   .hero-search {
     max-width: 100%;
   }
-  
+
   .search-input-wrapper {
     padding: 3px;
     padding-left: 12px;
     gap: 6px;
   }
-  
+
   .hero-search-input {
     font-size: 13px;
     padding: 4px 0;
@@ -264,24 +320,28 @@
   .search-arrow {
     font-size: 12px;
   }
-  
+
   .category-pills {
     gap: 8px;
   }
-  
+
   .category-pill {
     padding: 8px 14px;
     font-size: 12px;
   }
-  
+
   .hero-stats {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 16px;
   }
-  
+
   .stat-value {
     font-size: 20px;
+  }
+
+  .hero-text-slider {
+    min-height: 110px;
   }
 }
 
@@ -313,5 +373,9 @@
 
   .stat-label {
     font-size: 11px;
+  }
+
+  .hero-text-slider {
+    min-height: 130px;
   }
 }

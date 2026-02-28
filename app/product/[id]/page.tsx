@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { FaShoppingCart, FaMinus, FaPlus, FaArrowLeft, FaStar, FaLock, FaTruck, FaHeadset } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 import { getProductById } from "@/lib/sanity/queries";
 import { useCart } from "@/components/providers/CartProvider";
 import "@/components/ProductDetail.css";
@@ -15,6 +16,7 @@ export default function ProductDetail() {
   const router = useRouter();
   const id = params.id as string;
   const { addToCart } = useCart();
+  const { data: session } = useSession();
   const [product, setProduct] = useState<any>(null);
   const [qty, setQty] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -22,10 +24,7 @@ export default function ProductDetail() {
   useEffect(() => {
     getProductById(id).then((data) => {
       if (data) {
-        setProduct({
-          ...data,
-          images: data.images && data.images.length > 0 ? data.images : (data.image ? [data.image] : []),
-        });
+        setProduct(data);
       }
     });
   }, [id]);
@@ -53,6 +52,10 @@ export default function ProductDetail() {
   }
 
   function handleBuyNow() {
+    if (!session) {
+      router.push(`/login?callbackUrl=/product/${id}`);
+      return;
+    }
     handleAddToCart();
     router.push("/cart");
   }
@@ -66,14 +69,18 @@ export default function ProductDetail() {
             {product.discount > 0 && (
               <span className="detail-discount-badge">{product.discount}% OFF</span>
             )}
-            <Image
-              src={product.images?.[selectedImage] || product.image}
-              alt={product.title}
-              width={500}
-              height={450}
-              className="detail-main-image"
-              priority
-            />
+            {(product.images?.[selectedImage] || product.image) ? (
+              <Image
+                src={product.images?.[selectedImage] || product.image}
+                alt={product.title}
+                width={500}
+                height={450}
+                className="detail-main-image"
+                priority
+              />
+            ) : (
+              <div className="detail-main-image" style={{ width: 500, height: 450, background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>No Image</div>
+            )}
           </div>
           
           {/* Thumbnail Gallery */}

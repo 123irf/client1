@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 export default auth((req) => {
   const isLoggedIn = !!req.auth
 
-  const protectedPaths = ["/cart"]
+  const protectedPaths: string[] = []
   const authPaths = ["/login", "/signup"]
 
   const { pathname } = req.nextUrl

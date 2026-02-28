@@ -7,8 +7,8 @@ export async function getProducts() {
       _id,
       title,
       slug,
-      "image": coalesce(images[0].asset->url, image.asset->url),
-      "images": coalesce(images[].asset->url, select(defined(image) => [image.asset->url], [])),
+      "sanityImages": images[_type == "image"].asset->url,
+      "externalImages": images[_type == "externalImage"].url,
       price,
       discount,
       description,
@@ -17,6 +17,15 @@ export async function getProducts() {
       ageRange,
       "category": category->title
     }`
+  ).then((products: any[]) =>
+    products.map((p: any) => {
+      const allImages = [...(p.sanityImages || []), ...(p.externalImages || [])].filter(Boolean);
+      return {
+        ...p,
+        image: allImages[0] || null,
+        images: allImages,
+      };
+    })
   );
 }
 
@@ -26,8 +35,8 @@ export async function getProductById(id: string) {
       _id,
       title,
       slug,
-      "image": coalesce(images[0].asset->url, image.asset->url),
-      "images": coalesce(images[].asset->url, select(defined(image) => [image.asset->url], [])),
+      "sanityImages": images[_type == "image"].asset->url,
+      "externalImages": images[_type == "externalImage"].url,
       price,
       originalPrice,
       discount,
@@ -40,7 +49,15 @@ export async function getProductById(id: string) {
       "category": category->title
     }`,
     { id }
-  );
+  ).then((p: any) => {
+    if (!p) return null;
+    const allImages = [...(p.sanityImages || []), ...(p.externalImages || [])].filter(Boolean);
+    return {
+      ...p,
+      image: allImages[0] || null,
+      images: allImages,
+    };
+  });
 }
 
 // Hero Slides
