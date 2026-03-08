@@ -28,6 +28,13 @@
   object-position: center right;
 }
 
+.hero-bg-contain {
+  object-fit: contain;
+  object-position: center right;
+  transform: scale(1.45);
+  transform-origin: center right;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;

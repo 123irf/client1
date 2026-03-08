@@ -6,7 +6,9 @@ import HeroBanner from "@/components/HeroBanner";
 import ProductSlider from "@/components/ProductSlider";
 import AboutCards from "@/components/AboutCards";
 import BrandPromise from "@/components/BrandPromise";
+import Testimonials from "@/components/Testimonials";
 import { getProducts } from "@/lib/sanity/queries";
+import LoadingScreen from "@/components/LoadingScreen";
 import "./home.css";
 
 export default function Home() {
@@ -14,17 +16,18 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProducts()
-      .then((data) => {
-        if (data && data.length > 0) {
-          setProducts(data);
-        }
-      })
-      .finally(() => setLoading(false));
+    const minDelay = new Promise((res) => setTimeout(res, 2000));
+    Promise.all([getProducts(), minDelay]).then(([data]) => {
+      if (data && data.length > 0) setProducts(data);
+      setLoading(false);
+    });
   }, []);
 
   return (
     <main>
+      {/* Elephant running loading screen */}
+      {loading && <LoadingScreen message="Loading KidZoFi" />}
+
       {/* New Static Hero Banner */}
       <HeroBanner />
 
@@ -36,11 +39,7 @@ export default function Home() {
             View All <span className="arrow">&rarr;</span>
           </Link>
         </div>
-        {loading ? (
-          <p className="products-loading">Loading products...</p>
-        ) : (
-          <ProductSlider products={products} />
-        )}
+        <ProductSlider products={products} />
       </section>
 
       {/* Why Choose KidZoFi + Testimonials */}
@@ -48,6 +47,9 @@ export default function Home() {
 
       {/* Brand Promise Section */}
       <BrandPromise />
+
+      {/* Testimonials - above footer */}
+      <Testimonials />
     </main>
   );
 }

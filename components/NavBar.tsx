@@ -20,8 +20,10 @@ export default function NavBar() {
   return (
     <header className={`navbar ${isHome ? "navbar-transparent" : "navbar-green"}`}>
       {/* Left */}
-        <div className="navbar-left">
-        <Image src="/Logo.png" alt="KidZoFi Logo" width={100} height={100} className="logo" />
+      <div className="navbar-left">
+        <Link href="/">
+          <Image src="/Logo.png" alt="KidZoFi Logo" width={100} height={100} className="logo" />
+        </Link>
       </div>
 
       {/* Center (Desktop menu) */}

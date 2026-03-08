@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa";
 import { getProducts } from "@/lib/sanity/queries";
 import { useCart } from "@/components/providers/CartProvider";
+import LoadingScreen from "@/components/LoadingScreen";
 import "@/components/ProductsPage.css";
 
 function ProductGridCard({ product, onAddToCart }: { product: any; onAddToCart: (p: any) => void }) {
@@ -67,18 +68,13 @@ export default function ProductsPage() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    getProducts()
-      .then((data) => {
-        if (data && data.length > 0) {
-          setProducts(
-            data.map((p: any) => ({
-              ...p,
-              category: p.category || "Educational",
-            }))
-          );
-        }
-      })
-      .finally(() => setLoading(false));
+    const minDelay = new Promise((res) => setTimeout(res, 2000));
+    Promise.all([getProducts(), minDelay]).then(([data]) => {
+      if (data && data.length > 0) {
+        setProducts(data.map((p: any) => ({ ...p, category: p.category || "Educational" })));
+      }
+      setLoading(false);
+    });
   }, []);
 
   function handleAddToCart(product: any) {
@@ -94,19 +90,16 @@ export default function ProductsPage() {
   return (
     <main className="products-page">
 
-      {loading ? (
-        <p style={{ textAlign: "center", padding: "60px", color: "#999" }}>Loading products...</p>
-      ) : (
-        <div className="products-grid">
-          {products.map((product) => (
-            <ProductGridCard
-              key={product._id}
-              product={product}
-              onAddToCart={handleAddToCart}
-            />
-          ))}
-        </div>
-      )}
+      {loading && <LoadingScreen message="Loading Products" />}
+      <div className="products-grid">
+        {products.map((product) => (
+          <ProductGridCard
+            key={product._id}
+            product={product}
+            onAddToCart={handleAddToCart}
+          />
+        ))}
+      </div>
     </main>
   );
 }

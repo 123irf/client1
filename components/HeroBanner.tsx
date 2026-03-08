@@ -15,7 +15,8 @@ const slides = [
       "AI-powered smart learning tools that make early education joyful, safe, and brilliantly engaging for kids aged 3\u201310.",
   },
   {
-    image: "/herobanner2.jpg",
+    image: "/herobanner3.jpg",
+    contain: true,
     heading: "Discover",
     highlight: "Smart Play for Kids",
     subtitle:
@@ -66,7 +67,7 @@ export default function HeroBanner() {
             alt={`Slide ${i + 1}`}
             fill
             priority={i === 0}
-            className="hero-bg-image"
+            className={slide.contain ? "hero-bg-image hero-bg-contain" : "hero-bg-image"}
           />
           <div className="hero-overlay" />
         </div>

@@ -85,6 +85,20 @@ export async function getAboutCards() {
   );
 }
 
+// Testimonials
+export async function getTestimonials() {
+  return client.fetch(
+    `*[_type == "testimonial"] | order(order asc) {
+      _id,
+      name,
+      location,
+      "image": image.asset->url,
+      quote,
+      rating
+    }`
+  );
+}
+
 // Contact Info (singleton)
 export async function getContactInfo() {
   return client.fetch(

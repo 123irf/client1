@@ -1,0 +1,419 @@
+/* ── Colour tokens ─────────────────────────────────── */
+:root {
+  --el-gray:   #8a8a8a;
+  --el-dark:   #6e6e6e;
+  --el-light:  #a6a6a6;
+  --el-belly:  #b0b0b0;
+  --el-ear-in: #c9836e;
+  --el-eye:    #1a1a1a;
+  --el-hat:    #22c55e;
+}
+
+/* ── Full-screen overlay ───────────────────────────── */
+.ls-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, #f0fdf4 0%, #dcfce7 55%, #bbf7d0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* ── Track container ───────────────────────────────── */
+.ls-track {
+  position: relative;
+  width: 360px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.ls-ground {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #86efac 15%, #86efac 85%, transparent);
+  border-radius: 2px;
+}
+
+/* ── Running wrapper (the thing that slides across) ── */
+.ls-runner {
+  position: absolute;
+  bottom: 11px;
+  left: -230px;
+  animation: runAcross 1.9s linear infinite;
+}
+
+@keyframes runAcross {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(590px); }
+}
+
+/* ── Elephant root ─────────────────────────────────── */
+/*   Elephant faces RIGHT. Left = back, Right = front. */
+.ls-elephant {
+  position: relative;
+  width: 210px;
+  height: 140px;
+  /* slight forward lean while running */
+  transform: rotate(-3deg);
+}
+
+/* ── Torso (main body) ─────────────────────────────── */
+.ls-torso {
+  position: absolute;
+  left: 30px;
+  bottom: 44px;
+  width: 115px;
+  height: 78px;
+  background: var(--el-gray);
+  /* egg/barrel shape — fatter at the back, tapers toward front */
+  /* bottom is intentionally less rounded so legs attach cleanly */
+  border-radius: 52% 46% 22% 32% / 55% 55% 18% 18%;
+  box-shadow:
+    inset  7px  7px 18px rgba(255,255,255,0.14),
+    inset -7px -7px 18px rgba(0,0,0,0.20),
+    0 5px 14px rgba(0,0,0,0.14);
+  z-index: 5;
+}
+
+/* ── Legs ──────────────────────────────────────────── */
+.ls-leg {
+  position: absolute;
+  width: 20px;
+  height: 60px;   /* taller so tops embed 16px into the torso */
+  background: var(--el-gray);
+  border-radius: 3px 3px 8px 8px;
+  box-shadow: inset -3px 0 6px rgba(0,0,0,0.12);
+  transform-origin: top center;
+  z-index: 4;
+}
+
+.ls-hoof {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 12px;
+  background: var(--el-dark);
+  border-radius: 50%;
+}
+
+/* Back pair — under rear of body */
+/* bottom:0 → tops at 60px, torso bottom at 44px → 16px overlap into body */
+.ls-bl1 { bottom: 0;  left: 38px;  z-index: 2; animation: legA 0.28s ease-in-out infinite alternate; }
+.ls-bl2 { bottom: 0;  left: 60px;  z-index: 1; animation: legB 0.28s ease-in-out infinite alternate; }
+
+/* Front pair — under front of body */
+.ls-fl1 { bottom: 0;  left: 100px; z-index: 6; animation: legB 0.28s ease-in-out infinite alternate; }
+.ls-fl2 { bottom: 0;  left: 120px; z-index: 7; animation: legA 0.28s ease-in-out infinite alternate; }
+
+@keyframes legA {
+  from { transform: rotate(-22deg); }
+  to   { transform: rotate( 22deg); }
+}
+@keyframes legB {
+  from { transform: rotate( 22deg); }
+  to   { transform: rotate(-22deg); }
+}
+
+/* ── Tail ──────────────────────────────────────────── */
+.ls-tail {
+  position: absolute;
+  left: 38px;
+  bottom: 86px;
+  width: 14px;
+  height: 54px;
+  /* Taper: wide at the root (top), narrow at the tip (bottom) */
+  clip-path: polygon(8% 0%, 92% 0%, 68% 100%, 32% 100%);
+  background: linear-gradient(to bottom, var(--el-gray) 0%, var(--el-dark) 100%);
+  transform-origin: top center;
+  animation: tailSwing 0.35s ease-in-out infinite alternate;
+  z-index: 3;
+}
+
+@keyframes tailSwing {
+  from { transform: rotate(-18deg); }
+  to   { transform: rotate(-50deg); }
+}
+
+/* Hair brush at the tip */
+.ls-tail-hairs {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 22px;
+}
+
+/* Five coarse hair strands fanning out */
+.ls-tail-hairs span {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  height: 18px;
+  background: var(--el-dark);
+  border-radius: 2px 2px 3px 3px;
+  transform-origin: bottom center;
+}
+.ls-tail-hairs span:nth-child(1) { transform: translateX(-50%) rotate(-38deg); }
+.ls-tail-hairs span:nth-child(2) { transform: translateX(-50%) rotate(-18deg); }
+.ls-tail-hairs span:nth-child(3) { transform: translateX(-50%) rotate(  0deg); }
+.ls-tail-hairs span:nth-child(4) { transform: translateX(-50%) rotate( 18deg); }
+.ls-tail-hairs span:nth-child(5) { transform: translateX(-50%) rotate( 38deg); }
+
+/* ── Head group ────────────────────────────────────── */
+.ls-head-group {
+  position: absolute;
+  right: 8px;
+  bottom: 52px;
+  width: 88px;
+  height: 90px;
+  z-index: 9;
+  animation: headBob 0.28s ease-in-out infinite alternate;
+}
+
+@keyframes headBob {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-4px); }
+}
+
+/* ── Ear ───────────────────────────────────────────── */
+.ls-ear {
+  position: absolute;
+  top: 0px;
+  left: -6px;
+  width: 46px;
+  height: 56px;
+  background: var(--el-light);
+  /* big floppy teardrop ear */
+  border-radius: 55% 30% 65% 38%;
+  transform: rotate(-10deg);
+  transform-origin: bottom right;
+  z-index: 7;
+  animation: earFlap 0.28s ease-in-out infinite alternate;
+}
+
+@keyframes earFlap {
+  from { transform: rotate(-10deg) scaleX(1);   }
+  to   { transform: rotate(-22deg) scaleX(0.92); }
+}
+
+.ls-ear-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-46%, -44%);
+  width: 26px;
+  height: 34px;
+  background: var(--el-ear-in);
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+/* ── Head ──────────────────────────────────────────── */
+.ls-head {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  width: 66px;
+  height: 60px;
+  background: var(--el-gray);
+  /* slightly wider than tall, roundish */
+  border-radius: 50% 48% 52% 50% / 54% 54% 46% 46%;
+  box-shadow:
+    inset  4px  4px 12px rgba(255,255,255,0.12),
+    inset -4px -4px 12px rgba(0,0,0,0.16);
+  z-index: 8;
+}
+
+/* ── Eye ───────────────────────────────────────────── */
+.ls-eye {
+  position: absolute;
+  top: 18px;
+  right: 14px;
+  width: 11px;
+  height: 11px;
+  background: var(--el-eye);
+  border-radius: 50%;
+  animation: blink 3.5s ease-in-out infinite;
+}
+
+.ls-eye::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+@keyframes blink {
+  0%, 42%, 58%, 100% { transform: scaleY(1); }
+  50%               { transform: scaleY(0.08); }
+}
+
+/* ── Party hat ─────────────────────────────────────── */
+.ls-hat {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+}
+
+.ls-hat-cone {
+  width: 0;
+  height: 0;
+  border-left:  15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 38px solid var(--el-hat);
+  position: relative;
+}
+
+.ls-hat-cone::before {
+  content: '';
+  position: absolute;
+  top: 9px; left: -10px;
+  width: 20px; height: 4px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 2px;
+}
+
+.ls-hat-pom {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 11px;
+  height: 11px;
+  background: #16a34a;
+  border-radius: 50%;
+  animation: pomBounce 0.28s ease-in-out infinite alternate;
+}
+
+@keyframes pomBounce {
+  from { transform: translateX(-50%) translateY(0); }
+  to   { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ── Trunk ─────────────────────────────────────────── */
+/*   Hangs down from the snout (bottom-right of head)  */
+.ls-trunk {
+  position: absolute;
+  right: -5px;         /* at the snout side */
+  bottom: 5px;
+  width: 16px;
+  height: 22px;
+  background: var(--el-gray);
+  border-radius: 8px 8px 6px 6px;
+  transform-origin: top center;
+  /* trunk streams back while running */
+  transform: rotate(-18deg);
+  animation: trunkStream 0.3s ease-in-out infinite alternate;
+  z-index: 10;
+}
+
+@keyframes trunkStream {
+  from { transform: rotate(-14deg); }
+  to   { transform: rotate(-28deg); }
+}
+
+.ls-trunk-mid {
+  position: absolute;
+  top: 18px;
+  left: 1px;
+  width: 13px;
+  height: 20px;
+  background: var(--el-gray);
+  border-radius: 6px;
+}
+
+.ls-trunk-tip {
+  position: absolute;
+  top: 35px;
+  left: 2px;
+  width: 10px;
+  height: 16px;
+  background: var(--el-dark);
+  border-radius: 5px 5px 8px 8px;
+}
+
+/* ── Dust ──────────────────────────────────────────── */
+.ls-dust-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  width: 160px;
+  height: 32px;
+  pointer-events: none;
+}
+
+.ls-dust {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: rgba(134, 239, 172, 0.65);
+  opacity: 0;
+}
+
+.ld1 { left: 10px; width: 11px; height: 11px; animation: dustPuff 0.55s ease-out infinite; }
+.ld2 { left: 36px; width:  8px; height:  8px; animation: dustPuff 0.55s ease-out infinite 0.14s; }
+.ld3 { left: 62px; width: 10px; height: 10px; animation: dustPuff 0.55s ease-out infinite 0.28s; }
+
+@keyframes dustPuff {
+  0%   { opacity: 0.75; transform: translateY(0)    scale(1);   }
+  100% { opacity: 0;    transform: translateY(-22px) scale(0.3); }
+}
+
+/* ── Loading label ─────────────────────────────────── */
+.ls-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #15803d;
+  letter-spacing: 0.06em;
+}
+
+.ls-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.ls-dots span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: dotPop 0.9s ease-in-out infinite;
+}
+
+.ls-dots span:nth-child(2) { animation-delay: 0.18s; }
+.ls-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes dotPop {
+  0%, 80%, 100% { transform: scale(1);   opacity: 0.35; }
+  40%           { transform: scale(1.6); opacity: 1; }
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 480px) {
+  .ls-track {
+    width: 280px;
+    transform: scale(0.82);
+    transform-origin: center center;
+  }
+}

@@ -5,9 +5,9 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { FaShoppingCart, FaMinus, FaPlus, FaArrowLeft, FaStar, FaLock, FaTruck, FaHeadset } from "react-icons/fa";
-import { useSession } from "next-auth/react";
 import { getProductById } from "@/lib/sanity/queries";
 import { useCart } from "@/components/providers/CartProvider";
+import LoadingScreen from "@/components/LoadingScreen";
 import "@/components/ProductDetail.css";
 
 
@@ -16,25 +16,19 @@ export default function ProductDetail() {
   const router = useRouter();
   const id = params.id as string;
   const { addToCart } = useCart();
-  const { data: session } = useSession();
   const [product, setProduct] = useState<any>(null);
   const [qty, setQty] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
-    getProductById(id).then((data) => {
-      if (data) {
-        setProduct(data);
-      }
+    const minDelay = new Promise((res) => setTimeout(res, 2000));
+    Promise.all([getProductById(id), minDelay]).then(([data]) => {
+      if (data) setProduct(data);
     });
   }, [id]);
 
   if (!product) {
-    return (
-      <main className="product-detail-page">
-        <div className="detail-loading">Loading...</div>
-      </main>
-    );
+    return <LoadingScreen message="Loading Product" />;
   }
 
   const youSave = product.originalPrice - product.price;
@@ -52,10 +46,6 @@ export default function ProductDetail() {
   }
 
   function handleBuyNow() {
-    if (!session) {
-      router.push(`/login?callbackUrl=/product/${id}`);
-      return;
-    }
     handleAddToCart();
     router.push("/cart");
   }
